@@ -2,19 +2,19 @@ package haveYouSeenRoboCup;
 
 public class Education {
 	private String courseOfStudy = "";
-	private String highestDegree = "";
+	private String degree = "";
 	private String school = "";
 	private int gradYear = 0;
 	
 	public Education(){
 		courseOfStudy = "Graphic Design";
-		highestDegree = "M.F.A.";
+		degree = "M.F.A.";
 		school = "Arizona State University";
 		gradYear = 2010;
 	}
-	public Education(String cOS, String hD, String sch, int gY){
+	public Education(String cOS, String deg, String sch, int gY){
 		courseOfStudy = cOS;
-		highestDegree = hD;
+		degree = deg;
 		school = sch;
 		gradYear = gY;
 	}
@@ -22,8 +22,8 @@ public class Education {
 	public String getCourseOfStudy(){
 		return courseOfStudy;
 	}
-	public String getHighestDegree(){
-		return highestDegree;
+	public String getDegree(){
+		return degree;
 	}
 	public String getSchool(){
 		return school;
@@ -34,8 +34,8 @@ public class Education {
 	public void setCourseOfStudy(String cOS){
 		courseOfStudy = cOS;
 	}
-	public void setHighestDegree(String hD){
-		highestDegree = hD;
+	public void setDegree(String deg){
+		degree = deg;
 	}
 	public void setSchool(String sch){
 		school = sch;
@@ -46,7 +46,7 @@ public class Education {
 	public String toString(){
  
 		
-		return String.format("%s in %s\n%s, %s", highestDegree, courseOfStudy, school, gradYear);
+		return String.format("%s in %s\n%s, %s", degree, courseOfStudy, school, gradYear);
 	}
 
 	public String consoleTextFormatter(String text, int nextLine)

@@ -11,7 +11,7 @@ public class RoboResume {
 		boolean againExt = false;
 		boolean againInt = false;
 		boolean againDuty = false;
-		boolean againGradYear = false;
+		//boolean againGradYear = false;
 		boolean keepLooping = false;
 		String yesOrNo = "";
 		Scanner strScan = new Scanner(System.in);
@@ -94,7 +94,7 @@ public class RoboResume {
 					if(selection.equals("1")){
 							//keepLooping = false;
 							System.out.println("Enter an Educational Achievement)");
-							do{
+							/*do{
 								System.out.println("What is the degree you have obtained?)");
 								try{
 											degree = capitalizeSentence(strScan.nextLine());	
@@ -112,10 +112,11 @@ public class RoboResume {
 										degreeInput += degree.get(count);
 									}
 								}
-								eduC.setHighestDegree("1" + degreeInput);
+								eduC.setDegree("1" + degreeInput);
 								keepLooping=false;
-							}while(keepLooping);
-							do{
+							}while(keepLooping);*/
+							educationSentenceCheck("degree", eduC, keepLooping, degree, 1, strScan);
+							/*do{
 								System.out.println("What School did you attend?)");
 								try{
 									school = capitalizeSentence(strScan.nextLine());	
@@ -135,8 +136,9 @@ public class RoboResume {
 							keepLooping=false;
 							eduC.setSchool(schoolInput);
 							}
-							while(keepLooping);
-							do{
+							while(keepLooping);*/
+							educationSentenceCheck("school", eduC, keepLooping, school, 2, strScan);
+							/*do{
 								System.out.println("What was your major?)");
 								try{
 									major = capitalizeSentence(strScan.nextLine());	
@@ -157,7 +159,8 @@ public class RoboResume {
 								keepLooping = false;
 								eduC.setCourseOfStudy(majorInput);
 							}
-							while(keepLooping);
+							while(keepLooping);*/
+							educationSentenceCheck("major", eduC, keepLooping, major, 3, strScan);
 							int gradYear = 0;
 							do{
 							System.out.println("What year did you graduate?)");
@@ -186,7 +189,7 @@ public class RoboResume {
 					else if(selection.equals("2")){
 						//keepLooping = false;
 						System.out.println("Enter a Work Experience)");
-						do{
+						/*do{
 							System.out.println("What is/was your job title during this experience?)");
 							try{
 								jobTitle = capitalizeSentence(strScan.nextLine());	
@@ -205,9 +208,11 @@ public class RoboResume {
 							}
 						keepLooping=false;
 						workC.setJobTitle("2"+jobTitleInput);
-						}while(keepLooping);
+						}while(keepLooping);*/
+						
 						//System.out.print(workC.getJobTitle());
-						do{
+						workSentenceCheck("job title", workC, keepLooping, jobTitle, 1, strScan );
+						/*do{
 							System.out.println("Who is/was your employer?)");
 							try{
 								employer = capitalizeSentence(strScan.nextLine());	
@@ -226,7 +231,8 @@ public class RoboResume {
 							}
 						keepLooping=false;
 						workC.setEmployer(employerInput);
-						}while(keepLooping);	
+						}while(keepLooping);*/	
+						workSentenceCheck("employer", workC, keepLooping, employer, 2, strScan );
 						do{
 							try{
 								System.out.println("What month and year did you start [ex. June 2016]?)");
@@ -267,7 +273,7 @@ public class RoboResume {
 						System.out.println("What were your duties?)");
 						workC.clearDuties();
 						do{	
-							do{
+							/*do{
 								System.out.println("Enter a duty)");
 								try{
 									duty = capitalizeSentence(strScan.nextLine());	
@@ -286,7 +292,8 @@ public class RoboResume {
 								}
 							keepLooping=false;
 							workC.addDuty(dutyInput);
-						}while(keepLooping);
+						}while(keepLooping);*/
+							workSentenceCheck("duty", workC, keepLooping, duty, 3, strScan);
 						System.out.print("You can enter another duty. ");
 						}while(letsGoAgain(yesOrNo, againDuty, strScan));
 						resumeBullets.add(workC.toString());
@@ -295,7 +302,7 @@ public class RoboResume {
 						//keepLooping = false;
 						System.out.println("Enter a Skill)");
 						
-						do{
+						/*do{
 							System.out.println("Enter one of your skills)");
 							try{
 								skill = capitalizeSentence(strScan.nextLine());	
@@ -314,8 +321,9 @@ public class RoboResume {
 							}
 						keepLooping=false;
 						skillC.setSkillName("3"+skillInput);
-						}while(keepLooping);	
-						do{
+						}while(keepLooping);*/
+						skillSentenceCheck("skill", skillC, keepLooping, skill, 1, strScan);
+						/*do{
 							System.out.println("Enter a Rating for this Skill)");
 							try{
 								rating = capitalizeSentence(strScan.nextLine());	
@@ -334,8 +342,9 @@ public class RoboResume {
 							}
 						keepLooping=false;
 						skillC.setRating(ratingInput);
-						}while(keepLooping);
+						}while(keepLooping);*/
 						//skill = "2"+skill+", "+rating;
+						skillSentenceCheck("rating", skillC, keepLooping, rating, 2, strScan);
 						resumeBullets.add(skillC.toString());
 					}
 				}
@@ -353,6 +362,8 @@ public class RoboResume {
 			//Where the resume print goes
 			System.out.print("You can enter another resume. ");
 		}while(letsGoAgain(yesOrNo, againExt, strScan));
+		strScan.close();
+		numScan.close();
 	}
 	public static String resumeGenerator(String name, String email, String[][] achievements){
 		String output = "";
@@ -451,5 +462,125 @@ public class RoboResume {
 	public static String capitalizeWord(String word){
 		return ((word.substring(0, 1)).toUpperCase() + (word.substring(1)).toLowerCase());
 	}
+
 	
+	public static void workSentenceCheck(String type, Work workC, boolean keepLooping, ArrayList <String> list, int whichVar, Scanner strScan ){
+		do{
+			
+			switch (whichVar){
+			case 1:
+				System.out.println(String.format("What is/was your %s?)", type));
+				break;
+			case 2:
+				System.out.println(String.format("Who is/was your %s?)", type));
+				break;
+			case 3:
+				System.out.println(String.format("Enter %s?)", type));
+		}
+			try{
+				list = capitalizeSentence(strScan.nextLine());	
+			}catch (IndexOutOfBoundsException e)
+			{
+				System.out.println(String.format("Your %s was not recognized. Please try again)", type));
+				keepLooping = true;
+				continue;
+			}
+					String input = "";
+			input =list.get(0);
+			if(list.size()>1){
+				for(int count = 1; count < list.size(); count ++){
+					input += list.get(count);
+				}
+			}
+			keepLooping=false;
+			switch (whichVar){
+				case 1:
+					workC.setJobTitle("2" + (input));
+					break;
+				case 2:
+					workC.setEmployer(input);
+					break;
+			}
+		}while(keepLooping);	
+	}
+	
+	public static void educationSentenceCheck(String type, Education eduC, boolean keepLooping, ArrayList <String> list, int whichVar, Scanner strScan ){
+		do{
+			switch (whichVar){
+			case 1:
+				System.out.println(String.format("What is the %s you have obtained?)", type));
+				break;
+			case 2:
+				System.out.println(String.format("What %s did you attend?)", type));
+				break;
+			case 3:
+				System.out.println(String.format("What was your %s?)", type));
+		}
+
+			try{
+				list = capitalizeSentence(strScan.nextLine());	
+			}catch (IndexOutOfBoundsException e)
+			{
+				System.out.println(String.format("Your %s was not recognized. Please try again)", type));
+				keepLooping = true;
+				continue;
+			}
+					String input = "";
+			input =list.get(0);
+			if(list.size()>1){
+				for(int count = 1; count < list.size(); count ++){
+					input += list.get(count);
+				}
+			}
+			keepLooping=false;
+			switch (whichVar){
+				case 1:
+					eduC.setDegree("1" + (input));
+					break;
+				case 2:
+					eduC.setSchool(input);
+					break;
+				case 3:
+					eduC.setCourseOfStudy(input);
+			}
+		}while(keepLooping);	
+	}
+	public static void skillSentenceCheck(String type, Skill skillC, boolean keepLooping, ArrayList <String> list, int whichVar, Scanner strScan ){
+		do{
+			switch (whichVar){
+			case 1:
+				System.out.println(String.format("Enter a %s)", type));
+				break;
+			case 2:
+				System.out.println(String.format("Enter a Rating for this %s)", type));
+				break;
+		}
+
+			try{
+				list = capitalizeSentence(strScan.nextLine());	
+			}catch (IndexOutOfBoundsException e)
+			{
+				System.out.println(String.format("Your %s was not recognized. Please try again)", type));
+				keepLooping = true;
+				continue;
+			}
+					String input = "";
+			input =list.get(0);
+			if(list.size()>1){
+				for(int count = 1; count < list.size(); count ++){
+					input += list.get(count);
+				}
+			}
+			keepLooping=false;
+			switch (whichVar){
+				case 1:
+					skillC.setSkillName("3" + (input));
+					break;
+				case 2:
+					skillC.setRating(input);
+					break;
+			}
+		}while(keepLooping);	
+	}
 }
+
